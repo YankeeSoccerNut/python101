@@ -32,7 +32,7 @@ def playTheGame():
 # main loop...
 keepGoing = True
 
-while ( keepGoing == True ):
+while (keepGoing == True):
     playTheGame()
     playAgain = raw_input("Would you like to play again (y/n)")
     if ( playAgain == "n" ):
