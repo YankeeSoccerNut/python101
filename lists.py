@@ -115,3 +115,49 @@ listToDedupe = [1,2,3,'a',3,3,'a','b',3,1,1,4,'b','b','c','c','d',4,4,5,6]
 
 print listToDedupe
 print deDupe(listToDedupe)
+
+#bonus....multiply two equal Matrices
+def multTwoEqualMatrices(matrix1, matrix2):
+    resultMatrix = []
+
+    #multiply together equally sized matrices only (same rows and same columns)
+    #row count is an easy test....columns could be tougher
+
+    if (len(matrix1)) != (len(matrix2)):  #unequal so return empty resultMatrix
+        print "Row counts are different...can't be multiplied with this function"
+        return resultMatrix
+
+    #at this point we have same number of rows...
+    #matrix multiplication is done by summing the results of multiply row x columns
+    #found zip function that will transform columns to rows...need * operator too!
+
+    tempMatrix = map(list, zip(*matrix2))
+    print "Transposed 2nd Matrix is %r" % tempMatrix
+
+    if (len(zip(*matrix1))) != (len(tempMatrix)):  #columns unequal so return empty resultMatrix
+    # TODO...doesn't seem to catch if items are not equal...[1,1],[1]
+        print "Column counts are different...can't be multiplied with this function"
+        return resultMatrix
+
+    rowForResultMatrix = []
+
+    for i in range (0, len(matrix1)): # rows
+
+        print "Row %d" % i
+        for j in range (0, len(matrix1[i])): # columns
+
+            result = (matrix1[i][j] * tempMatrix[i][j])
+            print "Result for [%d][%d] is %d" % (i,j,result)
+            #rowForResultMatrix.append(matrix1[i][j] + tempMatrix[i][j])
+
+        print "Next Row"
+        #print "rowForResultMatrix %r" % rowForResultMatrix
+        #resultMatrix.append(rowForResultMatrix)
+    return resultMatrix
+
+matrix1 = [[2,-2],[5,3,]]
+print "matrix1 %r" % matrix1
+matrix2 = [[-1,4],[7,6]]
+print "matrix2 %r" % matrix2
+
+print multTwoEqualMatrices(matrix1, matrix2)
